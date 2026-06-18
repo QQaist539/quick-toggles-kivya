@@ -321,6 +321,8 @@ log_level = 2
 # (int) Display warning upon buildozer run if buildozer.spec is older than main.py
 warn_on_root = 1
 
+android.accept_sdk_license = True
+
 # (str) Path to build artifact storage, absolute or relative to spec file
 # build_dir = ./.buildozer
 
