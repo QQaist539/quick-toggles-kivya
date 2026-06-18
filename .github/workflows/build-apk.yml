@@ -9,14 +9,13 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt update
-          # 將 libtinfo5 改為 libtinfo-dev
           sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo-dev cmake libffi-dev libssl-dev
           pip3 install --user --upgrade buildozer
       - name: Build with Buildozer
         run: |
           export PATH=$PATH:~/.local/bin
-          # 檢查 buildozer 是否存在
-          buildozer --version
+          # 加入這行來強制接受 SDK 授權
+          export BUILDOZER_ACCEPT_SDK_LICENSE=1
           buildozer android debug
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
