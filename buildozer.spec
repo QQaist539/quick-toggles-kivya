@@ -1,4 +1,8 @@
 [app]
+# 強制指定 build-tools 版本，不要用預設的 37
+android.sdk_build_tools_version = 34.0.0
+# 指定 Android API 為 33 或 34
+android.api = 33
 
 # (str) Title of your application
 title = Quick Toggles Classic
