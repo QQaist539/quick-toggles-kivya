@@ -6,17 +6,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: Install dependencies
         run: |
           sudo apt update
           sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo-dev cmake libffi-dev libssl-dev
           pip3 install --user --upgrade buildozer
+          
       - name: Build with Buildozer
         run: |
           export PATH=$PATH:~/.local/bin
-          # 加入這行來強制接受 SDK 授權
+          # 強制接受授權
           export BUILDOZER_ACCEPT_SDK_LICENSE=1
+          
+          # 清理並執行編譯
+          buildozer android clean
           buildozer android debug
+          
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         if: always()
